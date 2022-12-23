@@ -11,7 +11,7 @@ function init() {
 
 const generateREADMEmd = ({ title, description, motivation, installation, usage, credits, license }) =>
 
-```md
+`md
 # ${title}
 
 ## Description
@@ -28,7 +28,7 @@ ${credits}
 
 ## License
 ${license}
-```;
+`;
 
 inquirer
   .prompt([
@@ -71,7 +71,7 @@ inquirer
   .then((answers) => {
     const READMEmdFile = generateREADMEmd(answers);
 
-    fs.writeFile('README.md', READMEmdFile, (err) =>
+    fs.writeFile('generateREADME.md', READMEmdFile, (err) =>
       err ? console.log(err) : console.log('Successfully created README.md!')
     );
   });
