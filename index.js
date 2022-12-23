@@ -63,9 +63,10 @@ inquirer
       message: 'List your collaborators, if any, with links with their GitHub',
     },
     {
-      type: 'input',
+      type: 'list',
+      message: 'Add a license',
       name: 'License',
-      message: 'Add license',
+      choices: ['Apache', 'Boost', 'MIT', 'Mozilla', 'ISC', 'IBM'],
     },
   ])
   .then((answers) => {
