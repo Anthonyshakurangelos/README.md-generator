@@ -11,13 +11,13 @@ function init() {
 
 const generateREADMEmd = ({ title, description, motivation, installation, usage, credits, license }) =>
 
-`md
+`
 # ${title}
 
 ## Description
 ${description}
 
-## 
+## Installation
  ${installation}
 
 ## Usage
