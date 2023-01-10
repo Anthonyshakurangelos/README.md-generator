@@ -1,37 +1,12 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const fs = require('fs')
-// TODO: Create an array of questions for user input
-// const questions = [];
+const fs = require('fs');
+const generateMarkdown = require("./utils/generateMarkdown");
 
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
 
-function init() {
 
-const generateREADMEmd = ({ title, description, motivation, installation, usage, credits, license }) =>
-
-`
-# ${title}
-
-## Description
-${description}
-
-## Installation
- ${installation}
-
-## Usage
-${usage}
-
-## Credits 
-${credits}
-
-## License
-${license}
-`;
-
-inquirer
-  .prompt([
+const questions = () => {
+  return inquirer.prompt([
     {
       type: 'input',
       name: 'title',
@@ -63,21 +38,26 @@ inquirer
       message: 'List your collaborators, if any, with links with their GitHub',
     },
     {
-      type: 'list',
+      type: 'checkbox',
       message: 'Add a license',
       name: 'License',
-      choices: ['Apache', 'Boost', 'MIT', 'Mozilla', 'ISC', 'IBM'],
+      choices: ['Apache', 'Mozilla','MIT', 'None'],
     },
-  ])
-  .then((answers) => {
-    const READMEmdFile = generateREADMEmd(answers);
-
-    fs.writeFile('generateREADME.md', READMEmdFile, (err) =>
-      err ? console.log(err) : console.log('Successfully created README.md!')
-    );
+  ]);
+};
+function init() {
+   questions()
+  .then((data) => {
+    
+    return fs.writeFileSync('./README.md', generateMarkdown(data));
+  })
+  .catch((err) => {
+    if (err) {
+      throw err;
+    }
   });
+}
 // TODO: Create a function to initialize app
- }
 
 // Function call to initialize app
 init();
