@@ -34,7 +34,7 @@ const questions = () =>{
         {
             type: 'input',
             name: 'usage',
-            message: 'What is the purpose of the project?',
+            message: '![alttext](./assets/images/{add name of picture here})?',
         },
         {
             type: 'input',

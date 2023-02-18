@@ -37,7 +37,7 @@ function generateMarkdown(data) {
   ## Installation
   ${data.installation}
   ## Usage
-  ![alttext](./assets/images/{add name of picture here})
+  
   ${data.usage}
   
   ## Credits
