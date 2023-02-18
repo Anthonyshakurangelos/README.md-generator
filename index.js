@@ -1,63 +1,72 @@
-// TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require("./utils/generateMarkdown");
 
 
-
-const questions = () => {
-  return inquirer.prompt([
-    {
-      type: 'input',
-      name: 'title',
-      message: 'What is your title name?',
-    },
-    {
-      type: 'input',
-      name: 'description',
-      message: 'what is your description of this app?',
-    },
-    {
-      type: 'input',
-      name: 'motivation',
-      message: 'What is your motivation?',
-    },
-    {
-      type: 'input',
-      name: 'installation',
-      message: 'What are the steps required to install your project?',
-    },
-    {
-      type: 'input',
-      name: 'usage',
-      message: 'usage? Example..([alt text(assets/images/screenshot.png)]',
-    },
-    {
-      type: 'input',
-      name: 'credits',
-      message: 'List your collaborators, if any, with links with their GitHub',
-    },
-    {
-      type: 'checkbox',
-      message: 'Add a license',
-      name: 'License',
-      choices: ['Apache', 'Mozilla','MIT', 'None'],
-    },
-  ]);
+const questions = () =>{ 
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'projectName',
+            message: 'What is your project name?',
+        },
+        {
+            type: 'input',
+            name: 'description',
+            message: 'Describe your project and why you created it?',
+        },
+        {
+            type: 'input',
+            name: 'installation',
+            message: 'What is the installation?',
+        },
+        {
+            type: 'checkbox',
+            name: 'license',
+            message: 'What license will this be under?',
+            choices: ['None', 'MIT', 'Apache',  'Mozilla'],
+        },
+        {
+            type: 'input',
+            name: 'credits',
+            message: 'Who all contributed to this project?',
+        },
+        {
+            type: 'input',
+            name: 'usage',
+            message: 'What is the purpose of the project?',
+        },
+        {
+            type: 'input',
+            name: 'tests',
+            message: 'what tests have you ran?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email address?',
+        },
+        {
+            type: 'input',
+            name: 'githubUsername',
+            message: 'what is your Github user name?',
+        },
+    ]);
 };
-function init() {
-   questions()
-  .then((data) => {
-    
-    return fs.writeFileSync('./README.md', generateMarkdown(data));
-  })
-  .catch((err) => {
-    if (err) {
-      throw err;
-    }
-  });
-}
-// TODO: Create a function to initialize app
 
-// Function call to initialize app
+
+function init() {
+    questions()
+    .then((data) => {
+        console.log(data);
+        return fs.writeFileSync("./README.md", generateMarkdown(data));
+      })
+      .catch((err) => {
+        if (err) {
+          throw err;
+        }
+      });
+}
+
+
 init();
